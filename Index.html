@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Send Aymen to Oxford</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(rgba(183, 197, 214, 0.1), rgba(0, 33, 71, 0.05)), url('https://www.transparenttextures.com/patterns/subtle-white-feathers.png');
+      margin: 0;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Playfair+Display', serif;
+      position: relative;
+    }
+    h1::after, h3::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background: #C1A65D; /* oxford-gold */
+      transition: width 0.3s ease;
+    }
+    h1:hover::after, h3:hover::after {
+      width: 100px;
+    }
+    .oxford-blue {
+      background-color: #002147;
+    }
+    .oxford-mid-blue {
+      background-color: #005B9A;
+    }
+    .oxford-light-blue {
+      background-color: #B7C5D6;
+    }
+    .oxford-gold {
+      background-color: #C1A65D;
+    }
+    .card, .card-no-tilt {
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease;
+      max-width: 754px;
+      width: 100%;
+      box-sizing: border-box;
+      margin-left: auto;
+      margin-right: auto;
+      border: 1px solid rgba(193, 166, 93, 0.2); /* Subtle gold border */
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .card:hover {
+      transform: translateY(-8px) translateX(4px) translateZ(10px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    }
+    .card-no-tilt:hover {
+      transform: translateY(-8px) translateX(-4px) translateZ(10px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    }
+    .mission-container:hover,
+    .referrals-container:hover {
+      transform: translateY(-8px) translateX(-4px) translateZ(10px) scale(1.05);
+      background-color: #C1A65D;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    }
+    .mission-container:hover h3,
+    .referrals-container:hover h3 {
+      color: white;
+    }
+    .mission-container:hover .blockquote p,
+    .referrals-container:hover .blockquote p {
+      color: white;
+    }
+    .btn-donate {
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      position: relative;
+    }
+    .btn-donate::before {
+      content: '✦'; /* Small flourish */
+      position: absolute;
+      left: -15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #A68B4A;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .btn-donate:hover::before {
+      opacity: 1;
+    }
+    .btn-donate:hover {
+      transform: scale(1.1);
+      background-color: #A68B4A;
+    }
+    .parallax-image {
+      background-attachment: scroll;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 400px;
+      border: 2px solid #C1A65D;
+      border-radius: 8px;
+    }
+    .blockquote {
+      border-left: 4px solid #005B9A;
+      background: rgba(183, 197, 214, 0.2);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      position: relative;
+    }
+    .blockquote::before {
+      content: '“';
+      position: absolute;
+      left: -10px;
+      top: -10px;
+      font-size: 2rem;
+      color: #005B9A;
+    }
+    .blockquote::after {
+      content: '”';
+      position: absolute;
+      right: -10px;
+      bottom: -10px;
+      font-size: 2rem;
+      color: #005B9A;
+    }
+    .slideshow-container {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+    .slideshow-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .slideshow-image.active {
+      opacity: 1;
+    }
+    .slideshow-dots {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .slideshow-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background-color: #B7C5D6; /* oxford-light-blue */
+      border-radius: 50%;
+      margin: 0 5px;
+      cursor: pointer;
+    }
+    .slideshow-dot.active {
+      background-color: #C1A65D; /* oxford-gold */
+    }
+    main {
+      max-width: 754px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+    header .container {
+      max-width: 754px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+    section {
+      max-width: 754px;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 2rem;
+    }
+    .flex-container {
+      max-width: 754px;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    header h1 {
+      font-size: 2.5rem;
+    }
+    header p {
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800">
+  <!-- Header -->
+  <header class="oxford-blue text-white py-10">
+    <div class="container mx-auto px-4 relative z-10">
+      <h1 class="text-2.5xl font-bold">Send Aymen to Oxford: Unifying Psychology for Better Mental Health</h1>
+      <p class="mt-4 text-lg">Support the development of unifying the field of psychology to transform clinical practice and research.</p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container mx-auto px-4 py-12">
+    <!-- Hero Section with Image -->
+    <section class="flex-container flex flex-col md:flex-row gap-10 -mt-20">
+      <div class="md:w-1/2 card bg-white p-8 rounded-lg">
+        <div class="parallax-image" style="background-image: url('https://i.imgur.com/gttd0Ba.png')"></div>
+      </div>
+      <div class="md:w-1/2 card bg-white p-8 rounded-lg relative z-20">
+        <h2 class="text-3xl font-semibold text-oxford-blue">We Need a Unified Theory for Mental Health</h2>
+        <p class="mt-4">Mental health is in crisis, and fragmented theories hinder progress. Aymen Al Mandalawi, a 24-year-old psychology student, seeks to unify our understanding of well-being. He was accepted to Oxford to study Philosophy of Psychology. Help him with tuition at Oxford to advance mental health solutions.</p>
+        <a href="https://donio.sk/poslite-aymena-na-oxford?tab=about-story&lang=en" target="_blank" class="mt-6 inline-block px-8 py-4 oxford-gold text-white rounded-lg font-medium btn-donate">Donate Now</a>
+      </div>
+    </section>
+
+    <!-- Donation Bar -->
+    <section class="card bg-oxford-light-blue p-10 rounded-lg">
+      <h3 class="text-2xl font-semibold text-oxford-blue">Crowdfunding Progress</h3>
+      <div class="mt-6">
+        <div class="w-full bg-gray-200 rounded-full h-6">
+          <div class="oxford-mid-blue h-6 rounded-full transition-all duration-500" style="width: 13.59%"></div>
+        </div>
+        <div class="flex justify-between mt-4 text-sm">
+          <span>Raised: €4,876</span>
+          <span>Goal: €36,800</span>
+        </div>
+        <p class="mt-3 text-sm">55 Donors</p>
+        <a href="https://donio.sk/poslite-aymena-na-oxford?tab=about-story&lang=en" target="_blank" class="mt-6 inline-block px-8 py-4 oxford-gold text-white rounded-lg font-medium btn-donate">See More</a>
+      </div>
+    </section>
+
+    <!-- Aymen’s Mission -->
+    <section class="card-no-tilt mission-container bg-white p-10 rounded-lg">
+      <h3 class="text-2xl font-semibold text-oxford-blue">Aymen’s Mission</h3>
+      
+      <!-- The Challenge -->
+      <div class="mt-6">
+        <h4 class="text-xl font-semibold text-oxford-blue">The Challenge</h4>
+        <p class="mt-3">Mental health care lacks a cohesive framework. Without a shared understanding of human well-being, treatments vary widely, cost a lot and are generally not efficient - successful treatment rates vary between 30-40%. A unified and coherent theory is essential to guide effective interventions.</p>
+      </div>
+
+      <!-- Citation -->
+      <blockquote class="blockquote my-8 p-6 rounded-lg text-oxford-mid-blue">
+        <p>“How can we help people if we don’t agree on what the roots of the problems are and what it is that helps them?”</p>
+      </blockquote>
+
+      <!-- The Opportunity -->
+      <div class="mt-6">
+        <h4 class="text-xl font-semibold text-oxford-blue">The Opportunity</h4>
+        <p class="mt-3">Aymen’s passion for psychology and philosophy opened up his possibility to study at Oxford. The one-year philosophy program he was accepted to, will equip him with the tools to contribute to the unification of theories within psychology, bridging gaps in modern psychotherapy.</p>
+      </div>
+
+      <!-- The Plan -->
+      <div class="mt-6">
+        <h4 class="text-xl font-semibold text-oxford-blue">The Plan</h4>
+        <p class="mt-3">After Oxford, Aymen aims to continue in this endeavor. He thinks that a coherent and comprehensive theory will ultimately increase treatment efficacy, and potentially reduce research costs. The funds raised (€36,800 for tuition) will support his studies, supplemented by scholarships and savings (£7,730).</p>
+        <p class="mt-3 font-semibold">Your support will shape a brighter future!</p>
+      </div>
+    </section>
+
+    <!-- Aymen’s Background -->
+    <section class="card-no-tilt bg-white p-10 rounded-lg">
+      <h3 class="text-2xl font-semibold text-oxford-blue">Aymen’s Background</h3>
+      <div class="mt-6">
+        <div class="slideshow-container">
+          <img src="https://i.imgur.com/7A8dffB.png" alt="Aymen Background 1" class="slideshow-image active">
+          <img src="https://i.imgur.com/ezCFZQG.png" alt="Aymen Background 2" class="slideshow-image">
+          <img src="https://i.imgur.com/clh4BuZ.jpeg" alt="Aymen Background 3" class="slideshow-image">
+          <img src="https://i.imgur.com/4l66ky2.jpeg" alt="Aymen Background 4" class="slideshow-image">
+        </div>
+        <div class="slideshow-dots">
+          <span class="slideshow-dot active" data-index="0"></span>
+          <span class="slideshow-dot" data-index="1"></span>
+          <span class="slideshow-dot" data-index="2"></span>
+          <span class="slideshow-dot" data-index="3"></span>
+        </div>
+        <p class="mt-6">Aymen, a 24-year-old psychology student with a philosophical bent, has built a strong foundation for his Oxford journey. Aymen is currently completing his bachelor’s degree in psychology at the University of Amsterdam, whose Faculty of Behavioral Sciences ranks in the global top 10 (QS) and emphasizes experimental and clinical psychology. His studies have revealed the field’s deep theoretical fragmentation—more akin to an explosion in a confetti factory than a coherent science. 
+        <p class="mt-6">Alongside his academic work, he is active in the student wing of the Netherlands Institute for Psychologists, co-organizing lectures and conferences for over 300 students seeking to engage beyond the curriculum and connect with leaders in the field. Before Amsterdam, he completed a year-long philosophy program at the College of Anton Neuwirth, where he wrote approximately 50 essays under a rigorous academic team. It was there he came to understand that every practice rests on a theory—and that the quality of practice depends on the clarity and strength of that theory. This insight continues to guide his academic path.</p>
+        <a href="https://donio.sk/poslite-aymena-na-oxford?tab=about-story&lang=en" target="_blank" class="mt-6 inline-block px-8 py-4 oxford-gold text-white rounded-lg font-medium btn-donate">Donate Now</a>
+      </div>
+    </section>
+
+    <!-- Referrals -->
+    <section class="card-no-tilt referrals-container bg-white p-10 rounded-lg">
+      <h3 class="text-2xl font-semibold text-oxford-blue">Referrals</h3>
+      <div class="mt-6">
+        <div class="slideshow-container">
+          <img src="https://i.imgur.com/pmENnkM.png" alt="Aymen Background 1" class="slideshow-image active">
+          <img src="https://i.imgur.com/vgOmTH2.png" alt="Aymen Background 2" class="slideshow-image">
+        </div>
+        <div class="slideshow-dots">
+          <span class="slideshow-dot active" data-index="0"></span>
+          <span class="slideshow-dot" data-index="1"></span>
+        </div>
+   </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="oxford-blue text-white py-10">
+    <div class="container mx-auto px-4 text-center">
+      <p>© 2025 Send Aymen to Oxford. All rights reserved.</p>
+      <p class="mt-3">Powered by <a href="https://donio.sk" target="_blank" class="underline hover:text-oxford-gold">Donio</a></p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const slideshows = document.querySelectorAll('.slideshow-container');
+
+      slideshows.forEach((slideshow, index) => {
+        const images = slideshow.querySelectorAll('.slideshow-image');
+        const dots = slideshow.nextElementSibling.querySelectorAll('.slideshow-dot');
+        let currentImage = 0;
+
+        function showImage(index) {
+          images.forEach(img => img.classList.remove('active'));
+          dots.forEach(dot => dot.classList.remove('active'));
+          images[index].classList.add('active');
+          dots[index].classList.add('active');
+        }
+
+        function showNextImage() {
+          currentImage = (currentImage + 1) % images.length;
+          showImage(currentImage);
+        }
+
+        // Initialize with the first image
+        showImage(currentImage);
+
+        // Auto-cycle every 5 seconds
+        setInterval(showNextImage, 5000);
+
+        // Add click event to dots
+        dots.forEach(dot => {
+          dot.addEventListener('click', () => {
+            currentImage = parseInt(dot.getAttribute('data-index'));
+            showImage(currentImage);
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>
