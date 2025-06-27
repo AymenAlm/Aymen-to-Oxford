@@ -27,17 +27,18 @@
     .oxford-gold {
       background-color: #C1A65D;
     }
-    .card {
+    .card, .card-no-tilt {
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      max-width: 754px; /* Constrain all cards to 20cm */
+      width: 100%; /* Fill container but respect max-width */
+      box-sizing: border-box; /* Include padding in width calculation */
+      margin-left: auto;
+      margin-right: auto;
     }
     .card:hover {
       transform: translateY(-8px) rotate(1deg);
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-    }
-    .card-no-tilt {
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .card-no-tilt:hover {
       transform: translateY(-8px);
@@ -53,7 +54,7 @@
     .parallax-image {
       background-attachment: scroll;
       background-position: center;
-      background-size: cover; /* Changed to cover to fill the window */
+      background-size: cover;
       background-repeat: no-repeat;
       width: 100%;
       height: 400px;
@@ -86,21 +87,51 @@
     .slideshow-image.active {
       opacity: 1;
     }
+    main {
+      max-width: 754px; /* 20cm ≈ 754px at 96dpi */
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%; /* Ensure it uses full available space up to max-width */
+    }
+    header .container {
+      max-width: 754px; /* Match main content width */
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+    section {
+      max-width: 754px; /* Apply max-width to all sections */
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 2rem; /* Proportional vertical spacing */
+    }
+    .flex-container {
+      max-width: 754px; /* Constrain all flex containers */
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    header h1 {
+      font-size: 2.5rem; /* Reduced from 5xl (3rem) to a more prominent yet balanced size */
+    }
+    header p {
+      font-size: 1rem; /* Adjusted for consistency */
+    }
   </style>
 </head>
 <body class="bg-white text-gray-800">
   <!-- Header -->
   <header class="oxford-blue text-white py-10">
     <div class="container mx-auto px-4 relative z-10">
-      <h1 class="text-5xl font-bold">Send Aymen to Oxford: Unifying Psychology for Mental Health</h1>
-      <p class="mt-4 text-lg">Support Aymen’s journey to study at Oxford and develop a unified theory to transform mental health research.</p>
+      <h1 class="text-2.5xl font-bold">Send Aymen to Oxford: Unifying Psychology for Better Mental Health</h1>
     </div>
   </header>
 
   <!-- Main Content -->
   <main class="container mx-auto px-4 py-12">
     <!-- Hero Section with Image -->
-    <section class="flex flex-col md:flex-row gap-10 -mt-20">
+    <section class="flex-container flex flex-col md:flex-row gap-10 -mt-20">
       <div class="md:w-1/2 card bg-white p-8 rounded-lg">
         <div class="parallax-image" style="background-image: url('https://i.imgur.com/gttd0Ba.png')"></div>
       </div>
@@ -112,7 +143,7 @@
     </section>
 
     <!-- Donation Bar -->
-    <section class="mt-16 card bg-oxford-light-blue p-10 rounded-lg">
+    <section class="card bg-oxford-light-blue p-10 rounded-lg">
       <h3 class="text-2xl font-semibold text-oxford-blue">Crowdfunding Progress</h3>
       <div class="mt-6">
         <div class="w-full bg-gray-200 rounded-full h-6">
@@ -128,7 +159,7 @@
     </section>
 
     <!-- Aymen’s Mission -->
-    <section class="mt-16 card-no-tilt bg-white p-10 rounded-lg">
+    <section class="card-no-tilt bg-white p-10 rounded-lg">
       <h3 class="text-2xl font-semibold text-oxford-blue">Aymen’s Mission</h3>
       
       <!-- The Challenge -->
@@ -158,7 +189,7 @@
     </section>
 
     <!-- Aymen’s Background -->
-    <section class="mt-16 card-no-tilt bg-white p-10 rounded-lg">
+    <section class="card-no-tilt bg-white p-10 rounded-lg">
       <h3 class="text-2xl font-semibold text-oxford-blue">Aymen’s Background</h3>
       <div class="mt-6">
         <div class="slideshow-container">
@@ -194,7 +225,7 @@
       images[currentImage].classList.add('active');
     }
 
-    setInterval(showNextImage, 5000); // Change image every 5 seconds
+    setInterval(showNextImage, 5000); /* Change image every 5 seconds */
   </script>
 </body>
 </html>
