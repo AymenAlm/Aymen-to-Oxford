@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Send Aymen to Oxford</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: url('https://www.transparenttextures.com/patterns/subtle-white-feathers.png');
+      margin: 0;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+    }
+    .oxford-blue {
+      background-color: #002147;
+    }
+    .oxford-mid-blue {
+      background-color: #005B9A;
+    }
+    .oxford-light-blue {
+      background-color: #B7C5D6;
+    }
+    .oxford-gold {
+      background-color: #C1A65D;
+    }
+    .card, .card-no-tilt {
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      max-width: 754px; /* Constrain all cards to 20cm */
+      width: 100%; /* Fill container but respect max-width */
+      box-sizing: border-box; /* Include padding in width calculation */
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .card:hover {
+      transform: translateY(-8px) rotate(1deg);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    }
+    .card-no-tilt:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    }
+    .btn-donate {
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .btn-donate:hover {
+      transform: scale(1.1);
+      background-color: #A68B4A;
+    }
+    .parallax-image {
+      background-attachment: scroll;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 400px;
+      border: 2px solid #C1A65D;
+      border-radius: 8px;
+    }
+    .blockquote {
+      border-left: 4px solid #005B9A;
+      background: rgba(183, 197, 214, 0.2);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+    }
+    .slideshow-container {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+    .slideshow-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .slideshow-image.active {
+      opacity: 1;
+    }
+    .dot-container {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #B7C5D6; /* Light blue as inactive */
+      cursor: pointer;
+    }
+    .dot.active {
+      background-color: #005B9A; /* Mid blue as active */
+    }
+    main {
+      max-width: 754px; /* 20cm ≈ 754px at 96dpi */
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%; /* Ensure it uses full available space up to max-width */
+    }
+    header .container {
+      max-width: 754px; /* Match main content width */
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+    section {
+      max-width: 754px; /* Apply max-width to all sections */
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 2rem; /* Proportional vertical spacing */
+    }
+    .flex-container {
+      max-width: 754px; /* Constrain all flex containers */
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    header h1 {
+      font-size: 2.5rem; /* Reduced from 5xl (3rem) to a more prominent yet balanced size */
+    }
+    header p {
+      font-size: 1rem; /* Adjusted for consistency */
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800">
+  <!-- Header -->
+  <header class="oxford-blue text-white py-10">
+    <div class="container mx-auto px-4 relative z-10">
+      <h1 class="text-2.5xl font-bold">Send Aymen to Oxford: Unifying Psychology for Better Mental Health</h1>
+      <p class="mt-4 text-lg">Support the development of unifying the field of psychology to transform clinical practice and research.</p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container mx-auto px-4 py-12">
+    <!-- Hero Section with Image -->
+    <section class="flex-container flex flex-col md:flex-row gap-10 -mt-20">
+      <div class="md:w-1/2 card bg-white p-8 rounded-lg">
+        <div class="parallax-image" style="background-image: url('https://i.imgur.com/gttd0Ba.png')"></div>
+      </div>
+      <div class="md:w-1/2 card bg-white p-8 rounded-lg relative z-20">
+        <h2 class="text-3xl font-semibold text-oxford-blue">We Need a Unified Theory for Mental Health</h2>
+        <p class="mt-4">Mental health is in crisis, and fragmented theories hinder progress. Aymen Al Mandalawi, a 24-year-old psychology student, seeks to unify our understanding of well-being. He was accepted to Oxford to study Philosophy of Psychology. Help him with tuition at Oxford to advance mental health solutions.</p>
+        <a href="https://donio.sk/poslite-aymena-na-oxford?tab=about-story&lang=en" target="_blank" class="mt-6 inline-block px-8 py-4 oxford-gold text-white rounded-lg font-medium btn-donate">Donate Now</a>
+      </div>
+    </section>
+
+    <!-- Donation Bar -->
+    <section class="card bg-oxford-light-blue p-10 rounded-lg">
+      <h3 class="text-2xl font-semibold text-oxford-blue">Crowdfunding Progress</h3>
+      <div class="mt-6">
+        <div class="w-full bg-gray-200 rounded-full h-6">
+          <div class="oxford-mid-blue h-6 rounded-full transition-all duration-500" style="width: 13.59%"></div> <!-- 4876/36800 -->
+        </div>
+        <div class="flex justify-between mt-4 text-sm">
+          <span>Raised: €4,876</span>
+          <span>Goal: €36,800</span>
+        </div>
+        <p class="mt-3 text-sm">55 Donors</p>
+        <a href="https://donio.sk/poslite-aymena-na-oxford?tab=about-story&lang=en" target="_blank" class="mt-6 inline-block px-8 py-4 oxford-gold text-white rounded-lg font-medium btn-donate">See More</a>
+      </div>
+    </section>
+
+    <!-- Aymen’s Mission -->
+    <section class="card-no-tilt bg-white p-10 rounded-lg">
+      <h3 class="text-2xl font-semibold text-oxford-blue">Aymen’s Mission</h3>
+      
+      <!-- The Challenge -->
+      <div class="mt-6">
+        <h4 class="text-xl font-semibold text-oxford-blue">The Challenge</h4>
+        <p class="mt-3">Mental health care lacks a cohesive framework. Without a shared understanding of human well-being, treatments vary widely, cost a lot and are generally not efficient - successful treatment rates vary between 30-40%. A unified and coherent theory is essential to guide effective interventions.</p>
+      </div>
+
+      <!-- Citation -->
+      <blockquote class="blockquote my-8 p-6 rounded-lg text-oxford-mid-blue">
+        <p>“How can we help people if we don’t agree on what the roots of the problems are and what it is that helps them?”</p>
+      </blockquote>
+
+      <!-- The Opportunity -->
+      <div class="mt-6">
+        <h4 class="text-xl font-semibold text-oxford-blue">The Opportunity</h4>
+        <p class="mt-3">Aymen’s passion for psychology and philosophy opened up his possibility to study at Oxford. The one-year philosophy program he was accepted to, will equip him with the tools to contribute to the unification of theories within psychology, bridging gaps in modern psychotherapy.</p>
+      </div>
+
+      <!-- The Plan -->
+      <div class="mt-6">
+        <h4 class="text-xl font-semibold text-oxford-blue">The Plan</h4>
+        <p class="mt-3">After Oxford, Aymen aims to continue in this endeavor. He thinks that a coherent and comprehensive theory will ultimately increase treatment efficacy, and potentially reduce research costs. The funds raised (€36,800 for tuition) will support his studies, supplemented by scholarships and savings (£7,730).</p>
+        <p class="mt-3 font-semibold">Your support will shape a brighter future!</p>
+        
+      </div>
+    </section>
+
+    <!-- Aymen’s Background -->
+    <section class="card-no-tilt bg-white p-10 rounded-lg">
+      <h3 class="text-2xl font-semibold text-oxford-blue">Aymen’s Background</h3>
+      <div class="mt-6">
+        <div class="slideshow-container" id="background-slideshow">
+          <img src="https://i.imgur.com/7A8dffB.png" alt="Aymen Background 1" class="slideshow-image active">
+          <img src="https://i.imgur.com/ezCFZQG.png" alt="Aymen Background 2" class="slideshow-image">
+          <img src="https://i.imgur.com/clh4BuZ.jpeg" alt="Aymen Background 3" class="slideshow-image">
+          <img src="https://i.imgur.com/4l66ky2.jpeg" alt="Aymen Background 4" class="slideshow-image">
+          <div class="dot-container" id="background-dots"></div>
+        </div>
+        <p class="mt-6">Aymen, a 24-year-old psychology student with a philosophical bent, has built a strong foundation for his Oxford journey. Aymen is currently completing his bachelor’s degree in psychology at the University of Amsterdam, whose Faculty of Behavioral Sciences ranks in the global top 10 (QS) and emphasizes experimental and clinical psychology. His studies have revealed the field’s deep theoretical fragmentation—more akin to an explosion in a confetti factory than a coherent science. 
+        
+        <p class="mt-6">Alongside his academic work, he is active in the student wing of the Netherlands Institute for Psychologists, co-organizing lectures and conferences for over 300 students seeking to engage beyond the curriculum and connect with leaders in the field. Before Amsterdam, he completed a year-long philosophy program at the College of Anton Neuwirth, where he wrote approximately 50 essays under a rigorous academic team. It was there he came to understand that every practice rests on a theory—and that the quality of practice depends on the clarity and strength of that theory. This insight continues to guide his academic path.</p>
+        <a href="https://donio.sk/poslite-aymena-na-oxford?tab=about-story&lang=en" target="_blank" class="mt-6 inline-block px-8 py-4 oxford-gold text-white rounded-lg font-medium btn-donate">Donate Now</a>
+      </div>
+    </section>
+
+    <!-- Referrals -->
+    <section class="card-no-tilt bg-white p-10 rounded-lg">
+      <h3 class="text-2xl font-semibold text-oxford-blue">Referrals</h3>
+      <div class="mt-6">
+        <div class="slideshow-container" id="referrals-slideshow">
+          <img src="https://i.imgur.com/pmENnkM.png" alt="Referral 1" class="slideshow-image active">
+          <img src="https://i.imgur.com/vgOmTH2.png" alt="Referral 2" class="slideshow-image">
+          <div class="dot-container" id="referrals-dots"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="oxford-blue text-white py-10">
+    <div class="container mx-auto px-4 text-center">
+      <p>© 2025 Send Aymen to Oxford. All rights reserved.</p>
+      <p class="mt-3">Powered by <a href="https://donio.sk" target="_blank" class="underline hover:text-oxford-gold">Donio</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // Slideshow logic for both slideshows
+    const slideshows = {
+      background: {
+        container: document.getElementById('background-slideshow'),
+        dotsContainer: document.getElementById('background-dots'),
+        images: document.querySelectorAll('#background-slideshow .slideshow-image')
+      },
+      referrals: {
+        container: document.getElementById('referrals-slideshow'),
+        dotsContainer: document.getElementById('referrals-dots'),
+        images: document.querySelectorAll('#referrals-slideshow .slideshow-image')
+      }
+    };
+
+    function initializeSlideshow(slideshow) {
+      let currentImageIndex = 0;
+
+      // Create dots
+      slideshow.images.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.className = 'dot';
+        dot.addEventListener('click', () => goToImage(index));
+        slideshow.dotsContainer.appendChild(dot);
+      });
+      updateDots();
+
+      // Navigation buttons
+      const prevButton = document.createElement('button');
+      prevButton.textContent = '←';
+      prevButton.className = 'absolute left-2 top-1/2 transform -translate-y-1/2 bg-oxford-blue text-white px-2 py-1 rounded-full z-10';
+      prevButton.addEventListener('click', () => goToImage(currentImageIndex - 1));
+      slideshow.container.appendChild(prevButton);
+
+      const nextButton = document.createElement('button');
+      nextButton.textContent = '→';
+      nextButton.className = 'absolute right-2 top-1/2 transform -translate-y-1/2 bg-oxford-blue text-white px-2 py-1 rounded-full z-10';
+      nextButton.addEventListener('click', () => goToImage(currentImageIndex + 1));
+      slideshow.container.appendChild(nextButton);
+
+      function goToImage(index) {
+        currentImageIndex = (index + slideshow.images.length) % slideshow.images.length;
+        slideshow.images.forEach((img, i) => img.classList.toggle('active', i === currentImageIndex));
+        updateDots();
+      }
+
+      function updateDots() {
+        const dots = slideshow.dotsContainer.getElementsByClassName('dot');
+        Array.from(dots).forEach((dot, index) => {
+          dot.classList.toggle('active', index === currentImageIndex);
+        });
+      }
+
+      // Auto-advance
+      setInterval(() => goToImage(currentImageIndex + 1), 5000);
+    }
+
+    // Initialize both slideshows
+    initializeSlideshow(slideshows.background);
+    initializeSlideshow(slideshows.referrals);
+  </script>
+</body>
+</html>
