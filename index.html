@@ -87,6 +87,24 @@
     .slideshow-image.active {
       opacity: 1;
     }
+    .dot-container {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #B7C5D6; /* Light blue as inactive */
+      cursor: pointer;
+    }
+    .dot.active {
+      background-color: #005B9A; /* Mid blue as active */
+    }
     main {
       max-width: 754px; /* 20cm ≈ 754px at 96dpi */
       margin-left: auto;
@@ -124,7 +142,8 @@
   <!-- Header -->
   <header class="oxford-blue text-white py-10">
     <div class="container mx-auto px-4 relative z-10">
-      <h1 class="text-2.5xl font-bold">Send Aymen to Oxford: Unifying Psychology for Better Mental Health</h1>
+      <h1 class="text-2.5xl font-bold">Send Aymen to Oxford: Unifying Psychology for Mental Health</h1>
+      <p class="mt-4 text-lg">Support the development of a unified theory to transform mental practice and research.</p>
     </div>
   </header>
 
@@ -192,16 +211,29 @@
     <section class="card-no-tilt bg-white p-10 rounded-lg">
       <h3 class="text-2xl font-semibold text-oxford-blue">Aymen’s Background</h3>
       <div class="mt-6">
-        <div class="slideshow-container">
+        <div class="slideshow-container" id="background-slideshow">
           <img src="https://i.imgur.com/7A8dffB.png" alt="Aymen Background 1" class="slideshow-image active">
           <img src="https://i.imgur.com/ezCFZQG.png" alt="Aymen Background 2" class="slideshow-image">
           <img src="https://i.imgur.com/clh4BuZ.jpeg" alt="Aymen Background 3" class="slideshow-image">
           <img src="https://i.imgur.com/4l66ky2.jpeg" alt="Aymen Background 4" class="slideshow-image">
+          <div class="dot-container" id="background-dots"></div>
         </div>
         <p class="mt-6">Aymen, a 24-year-old psychology student with a philosophical bent, has built a strong foundation for his Oxford journey. Aymen is currently completing his bachelor’s degree in psychology at the University of Amsterdam, whose Faculty of Behavioral Sciences ranks in the global top 10 (QS) and emphasizes experimental and clinical psychology. His studies have revealed the field’s deep theoretical fragmentation—more akin to an explosion in a confetti factory than a coherent science. 
         
         <p class="mt-6">Alongside his academic work, he is active in the student wing of the Netherlands Institute for Psychologists, co-organizing lectures and conferences for over 300 students seeking to engage beyond the curriculum and connect with leaders in the field. Before Amsterdam, he completed a year-long philosophy program at the Anton Neuwirth College, where he wrote approximately 50 essays under a rigorous academic team. It was there he came to understand that every practice rests on a theory—and that the quality of practice depends on the clarity and strength of that theory. This insight continues to guide his academic path.</p>
         <a href="https://donio.sk/poslite-aymena-na-oxford?tab=about-story&lang=en" target="_blank" class="mt-6 inline-block px-8 py-4 oxford-gold text-white rounded-lg font-medium btn-donate">Donate Now</a>
+      </div>
+    </section>
+
+    <!-- Referrals -->
+    <section class="card-no-tilt bg-white p-10 rounded-lg">
+      <h3 class="text-2xl font-semibold text-oxford-blue">Referrals</h3>
+      <div class="mt-6">
+        <div class="slideshow-container" id="referrals-slideshow">
+          <img src="https://i.imgur.com/pmENnkM.png" alt="Referral 1" class="slideshow-image active">
+          <img src="https://i.imgur.com/vgOmTH2.png" alt="Referral 2" class="slideshow-image">
+          <div class="dot-container" id="referrals-dots"></div>
+        </div>
       </div>
     </section>
   </main>
@@ -215,17 +247,65 @@
   </footer>
 
   <script>
-    // Slideshow logic
-    const images = document.querySelectorAll('.slideshow-image');
-    let currentImage = 0;
+    // Slideshow logic for both slideshows
+    const slideshows = {
+      background: {
+        container: document.getElementById('background-slideshow'),
+        dotsContainer: document.getElementById('background-dots'),
+        images: document.querySelectorAll('#background-slideshow .slideshow-image')
+      },
+      referrals: {
+        container: document.getElementById('referrals-slideshow'),
+        dotsContainer: document.getElementById('referrals-dots'),
+        images: document.querySelectorAll('#referrals-slideshow .slideshow-image')
+      }
+    };
 
-    function showNextImage() {
-      images[currentImage].classList.remove('active');
-      currentImage = (currentImage + 1) % images.length;
-      images[currentImage].classList.add('active');
+    function initializeSlideshow(slideshow) {
+      let currentImageIndex = 0;
+
+      // Create dots
+      slideshow.images.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.className = 'dot';
+        dot.addEventListener('click', () => goToImage(index));
+        slideshow.dotsContainer.appendChild(dot);
+      });
+      updateDots();
+
+      // Navigation buttons
+      const prevButton = document.createElement('button');
+      prevButton.textContent = '←';
+      prevButton.className = 'absolute left-2 top-1/2 transform -translate-y-1/2 bg-oxford-blue text-white px-2 py-1 rounded-full z-10';
+      prevButton.addEventListener('click', () => goToImage(currentImageIndex - 1));
+      slideshow.container.appendChild(prevButton);
+
+      const nextButton = document.createElement('button');
+      nextButton.textContent = '→';
+      nextButton.className = 'absolute right-2 top-1/2 transform -translate-y-1/2 bg-oxford-blue text-white px-2 py-1 rounded-full z-10';
+      nextButton.addEventListener('click', () => goToImage(currentImageIndex + 1));
+      slideshow.container.appendChild(nextButton);
+
+      function goToImage(index) {
+        currentImageIndex = (index + slideshow.images.length) % slideshow.images.length;
+        slideshow.images.forEach((img, i) => img.classList.toggle('active', i === currentImageIndex));
+        updateDots();
+      }
+
+      function updateDots() {
+        const dots = slideshow.dotsContainer.getElementsByClassName('dot');
+        Array.from(dots).forEach((dot, index) => {
+          dot.classList.toggle('active', index === currentImageIndex);
+        });
+      }
+
+      // Auto-advance
+      setInterval(() => goToImage(currentImageIndex + 1), 5000);
     }
 
-    setInterval(showNextImage, 5000); /* Change image every 5 seconds */
+    // Initialize both slideshows
+    initializeSlideshow(slideshows.background);
+    initializeSlideshow(slideshows.referrals);
   </script>
 </body>
 </html>
